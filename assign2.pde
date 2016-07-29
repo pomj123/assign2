@@ -26,35 +26,32 @@ boolean leftPressed = false;
 boolean rightPressed = false;
 boolean hurt = false;
 boolean eat = false;
-
 final int GAME_START = 0;
 final int GAME_RUN = 1;
 final int GAME_OVER = 2;
 int gameState;
 
-
-
 void setup () {
   size(640, 480) ;
   //load img
-  fighterImg=loadImage("img/fighter.png");
-  enemyImg=loadImage("img/enemy.png");
-  bg1Img=loadImage("img/bg1.png");
-  bg2Img=loadImage("img/bg2.png");
-  hpImg=loadImage("img/hp.png");
-  treasureImg=loadImage("img/treasure.png");
-  start1Img=loadImage("img/start1.png");
-  start2Img=loadImage("img/start2.png");
-  end1Img=loadImage("img/end1.png");
-  end2Img=loadImage("img/end2.png");
-  
-  gameState = GAME_START;
-  fighterX=580;
-  fighterY=220;
-  hp=40;
-  enemyY=floor(random(50,421));
-  treasureX=floor(random(0,601));
-  treasureY=floor(random(50,421));
+    fighterImg=loadImage("img/fighter.png");
+    enemyImg=loadImage("img/enemy.png");
+    bg1Img=loadImage("img/bg1.png");
+    bg2Img=loadImage("img/bg2.png");
+    hpImg=loadImage("img/hp.png");
+    treasureImg=loadImage("img/treasure.png");
+    start1Img=loadImage("img/start1.png");
+    start2Img=loadImage("img/start2.png");
+    end1Img=loadImage("img/end1.png");
+    end2Img=loadImage("img/end2.png");
+  //StartInt
+    gameState = GAME_START;
+    fighterX=580;
+    fighterY=220;
+    hp=40;
+    enemyY=floor(random(50,421));
+    treasureX=floor(random(0,601));
+    treasureY=floor(random(50,421));
 }
 
 void draw() {
@@ -92,7 +89,10 @@ void draw() {
     //enemy
       image(enemyImg,enemyX%640,enemyY);
       enemyX=enemyX+3;
-
+      if (enemyY<=fighterY){
+      enemyY+=2;}
+      if (enemyY>=fighterY){
+      enemyY-=2;}
     
     //FighterMoving
       if (upPressed){
@@ -115,8 +115,8 @@ void draw() {
       fighterY=10;}
       
     //Hurt
-      if ( fighterX-enemyX%640<40 && fighterX-enemyX%640>-40){
-        if ( fighterY-enemyY<40 && fighterY-enemyY>-40){
+      if ( fighterX-enemyX%640<50 && fighterX-enemyX%640>-50){
+        if ( fighterY-enemyY<50 && fighterY-enemyY>-50){
           hp=hp-40;  
           enemyX=0;
           enemyY=floor(random(50,421));}}
@@ -127,10 +127,9 @@ void draw() {
           hp=hp+20;  
           treasureX=floor(random(50,421));
           treasureY=floor(random(50,421));}}
-          
-          
+                  
     //GameOver
-    if (hp == 0){
+    if (hp <= 0){
     gameState=GAME_OVER;}
     break;
     
