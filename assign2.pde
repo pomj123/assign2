@@ -58,7 +58,6 @@ void setup () {
 }
 
 void draw() {
-  println(mouseX);
   switch (gameState){
     
    case GAME_START :
