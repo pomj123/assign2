@@ -82,7 +82,7 @@ void draw() {
     //hp
       fill(#ff0000);
       stroke(#ff0000);
-      rect(20,15,hp,15);
+      rect(18,15,hp,15);
       image(hpImg,10,10);
       if(hp >= 200){hp=200;}
       
@@ -92,6 +92,7 @@ void draw() {
     //enemy
       image(enemyImg,enemyX%640,enemyY);
       enemyX=enemyX+3;
+
     
     //FighterMoving
       if (upPressed){
@@ -114,19 +115,19 @@ void draw() {
       fighterY=10;}
       
     //Hurt
-      if ( fighterX-enemyX<40 && fighterX-enemyX>-40){
+      if ( fighterX-enemyX%640<40 && fighterX-enemyX%640>-40){
         if ( fighterY-enemyY<40 && fighterY-enemyY>-40){
           hp=hp-40;  
           enemyX=0;
           enemyY=floor(random(50,421));}}
     
-    /*Eat
+    //Eat
       if ( fighterX-treasureX<40 && fighterX-treasureX>-40){
         if ( fighterY-treasureY<40 && fighterY-treasureY>-40){
           hp=hp+20;  
           treasureX=floor(random(50,421));
           treasureY=floor(random(50,421));}}
-          */
+          
           
     //GameOver
     if (hp == 0){
